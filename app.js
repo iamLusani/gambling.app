@@ -23,5 +23,34 @@ let deposit = () => {
     }
   }
 };
+let balance = deposit();
 
-deposit();
+//determine number of lines to bet on
+const getNumberOfLines = () => {
+  while (true) {
+    const lines = prompt("Enter number of lines (1-3): ");
+    const numberLines = parseFloat(lines);
+
+    if (isNaN(numberLines) || numberLines <= 0 || numberLines > 3) {
+      console.log("Invalid input!!!, try again.");
+    } else {
+      return numberLines;
+    }
+  }
+};
+const linesYouGot = getNumberOfLines();
+
+//collect a bet amount
+const getBet = (balance, lines) => {
+  while (true) {
+    const bet = prompt("Enter your bet: ");
+    const numberBet = parseFloat(bet);
+
+    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance / lines) {
+      console.log("Invalid input!!!, try again.");
+    } else {
+      return numberBet;
+    }
+  }
+};
+const yourBet = getBet(balance, linesYouGot);
